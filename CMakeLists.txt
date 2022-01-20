@@ -11,7 +11,7 @@ project(OpenGLDemo)
 		add_executable(${PROJECT_NAME} src/main.cpp)
 	endif()
 
-	target_link_libraries(${PROJECT_NAME} glad_interface glfw)
+	target_link_libraries(${PROJECT_NAME} opengl32 glad_interface glfw)
 
 option(PACKAGE_TESTS "Enable tests" ON)
 if(PACKAGE_TESTS)
