@@ -47,4 +47,4 @@ jobs:
         run: cmake --preset "x64-Debug"
         
       - name: Build with CMake
-        run: cmake --build
+        run: cmake --build .
