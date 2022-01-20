@@ -13,6 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  presetName: x64-Debug
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -39,8 +42,14 @@ jobs:
         # uses: lukka/get-cmake@2e45cd82cd67abcfd1b61fb17c253b99f8257189
         uses: lukka/get-cmake@v3.21.2
         
+      - name: Install X11 UI dev on Linux
+        run: sudo apt install xorg-dev
+        if: matrix.RunsOn == 'ubuntu-latest'
+        
       - name: Configure CMake project
         run: cmake --preset "x64-Debug"
         
       - name: Build with CMake
-        run: cmake --build
+        run: cmake --build $path
+        env:
+          path: 'out/build/${{ env.presetName }}'
