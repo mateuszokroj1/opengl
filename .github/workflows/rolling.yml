@@ -14,12 +14,14 @@ on:
   workflow_dispatch:
 
 env:
-  presetName: x64-Debug
+  preset: 'x64-Debug'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
+  
+    name: Build on Windows
   
     # The type of runner that the job will run on
     runs-on: windows-latest
@@ -39,9 +41,7 @@ jobs:
         uses: lukka/get-cmake@v3.21.2
         
       - name: Configure CMake project
-        run: cmake --preset ${{ env.presetName }}
+        run: cmake --preset ${{ env.preset }}
         
       - name: Build with CMake
-        run: cmake --build $path
-        env:
-          path: 'out/build/${{ env.presetName }}'
+        run: cmake --build "out/build/${{ env.preset }}"
