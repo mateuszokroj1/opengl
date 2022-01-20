@@ -41,7 +41,7 @@ jobs:
         uses: lukka/get-cmake@v3.21.2
         
       - name: Configure CMake project
-        run: cmake --preset ${{ env.preset }}
+        run: cmake --preset "${{ env.preset }}"
         
       - name: Build with CMake
         run: cmake --build "out/build/${{ env.preset }}"
