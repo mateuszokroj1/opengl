@@ -23,6 +23,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
         
+    name: Build on Windows
+        
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -43,8 +45,11 @@ jobs:
       - name: Configure CMake project
         run: cmake --preset "${{ env.preset }}"
         
+      - name: Go to build dir
+        run: cd "out/build/${{ env.preset }}"
+        
       - name: Build with CMake
-        run: cmake --build "out/build/${{ env.preset }}"
+        run: cmake --build .
       
       - name: Test
         run: ctest
