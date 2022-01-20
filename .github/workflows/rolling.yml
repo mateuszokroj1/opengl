@@ -41,7 +41,7 @@ jobs:
         
       - name: Install X11 UI dev on Linux
         run: sudo apt install xorg-dev
-        if: contains('ubuntu', ${{matrix.RunsOn}})
+        if: matrix.RunsOn == 'ubuntu-latest'
         
       - name: Configure CMake project
         run: cmake --preset "x64-Debug"
