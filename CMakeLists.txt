@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.14)
 
 project(OpenGLDemo)
 
-	find_package(OpenGL REQUIRED)
+	#include_directories(${OPENGL_INCLUDE_DIR})
+
+	IF(APPLE)
+		INCLUDE_DIRECTORIES ( '/System/Library/Frameworks' )
+		FIND_LIBRARY(OpenGL_LIBRARY OpenGL )
+		MARK_AS_ADVANCED (COCOA_LIBRARY
+			GLUT_LIBRARY
+			OpenGL_LIBRARY)
+		SET(EXTRA_LIBS ${COCOA_LIBRARY} ${GLUT_LIBRARY} ${OpenGL_LIBRARY})
+	ENDIF()
+
 	add_subdirectory(libs)
 
 	if(WIN32)
@@ -11,7 +21,7 @@ project(OpenGLDemo)
 		add_executable(${PROJECT_NAME} src/main.cpp)
 	endif()
 
-	target_link_libraries(${PROJECT_NAME} opengl32 glad_interface glfw)
+	target_link_libraries(${PROJECT_NAME} ${OpenGL_LIBRARY} glad_interface glfw)
 
 option(PACKAGE_TESTS "Enable tests" ON)
 if(PACKAGE_TESTS)
