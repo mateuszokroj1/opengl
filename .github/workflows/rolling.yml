@@ -39,6 +39,10 @@ jobs:
         # uses: lukka/get-cmake@2e45cd82cd67abcfd1b61fb17c253b99f8257189
         uses: lukka/get-cmake@v3.21.2
         
+      - name: Install X11 UI dev on Linux
+        run: sudo apt install xorg-dev
+        if: contains('ubuntu', ${{matrix.RunsOn}})
+        
       - name: Configure CMake project
         run: cmake --preset "x64-Debug"
         
