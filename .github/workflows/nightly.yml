@@ -23,6 +23,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
         
+    name: Build on Windows
+        
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -41,10 +43,10 @@ jobs:
         uses: lukka/get-cmake@v3.21.2
         
       - name: Configure CMake project
-        run: cmake --preset ${{ env.preset }}
+        run: cmake --preset "${{ env.preset }}"
         
       - name: Build with CMake
-        run: cmake --build "out/build/${{ env.preset }}"
+        run:  cd "out/build/${{ env.preset }}"; cmake --build .
       
       - name: Test
-        run: ctest
+        run: cd "out/build/${{ env.preset }}/tests"; .\tests.exe
