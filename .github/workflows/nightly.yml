@@ -45,11 +45,12 @@ jobs:
       - name: Configure CMake project
         run: cmake --preset "${{ env.preset }}"
         
-      - name: Go to build dir
-        run: cd "out/build/${{ env.preset }}"
-        
       - name: Build with CMake
-        run: cmake --build .
+        run: |
+          cd "out/build/${{ env.preset }}" |
+          cmake --build .
       
       - name: Test
-        run: ctest
+        run: |
+          cd "out/build/${{ env.preset }}" |
+          ctest
