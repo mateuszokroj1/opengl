@@ -16,6 +16,6 @@ This setting will make the repository pick up submodules correctly.
 
 1. Open Bash/Terminal/PowerShell and go to directory, where Git repo is located.
 2. Prepare cache files with CMake: `cmake --preset "x64-Debug"`
-3. Build your project: `cmake --build`
+3. Build your project: `cmake --build out/build/x64-Debug`
 
 The final object is a OpenGL windowed app.
