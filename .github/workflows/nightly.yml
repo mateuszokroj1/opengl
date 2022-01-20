@@ -49,4 +49,4 @@ jobs:
         run:  cd "out/build/${{ env.preset }}"; cmake --build .
       
       - name: Test
-        run: cd "out/build/${{ env.preset }}"; ctest
+        run: cd "out/build/${{ env.preset }}/tests"; .\tests.exe
