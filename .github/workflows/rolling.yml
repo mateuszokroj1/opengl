@@ -47,9 +47,7 @@ jobs:
         if: matrix.RunsOn == 'ubuntu-latest'
         
       - name: Install GL libraries
-        run: |
-          sudo apt-get update |
-          sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+        run: sudo apt install libgl-dev
         if: matrix.RunsOn == 'ubuntu-latest'
         
       - name: Configure CMake project
