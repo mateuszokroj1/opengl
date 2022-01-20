@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 project(OpenGLDemo)
 
+	find_package(OpenGL REQUIRED)
 	add_subdirectory(libs)
 
 	if(WIN32)
